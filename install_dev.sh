@@ -19,8 +19,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-sudo gpasswd -a $USER docker
-newgrp docker
+
 
 # install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -38,12 +37,13 @@ sudo apt install ansible
 
 # aws cli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt-get install unzip -y
 unzip awscliv2.zip
 sudo ./aws/install
 rm awscliv2.zip
 
 #virtualenv
-sudo apt install python3-virtualenv
+sudo apt install python3-virtualenv -y
 
 
 # bash completion
@@ -64,3 +64,6 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # nodejs
 sudo apt install nodejs npm -y
 sudo npm install --global yarn
+
+sudo gpasswd -a $USER docker
+newgrp docker
